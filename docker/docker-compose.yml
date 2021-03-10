@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+
+  xmen:
+    image: postgres
+    container_name: x_men_db
+    restart: always
+    build: postgres
+    ports:
+      - 64321:5432
+    environment:
+      POSTGRES_DB: mutants_xmen
+      POSTGRES_USER: xmen
+      POSTGRES_PASSWORD: mutants1234@xmen

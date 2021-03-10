@@ -1,0 +1,12 @@
+server:
+  port: 1963
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:64321/mutants_xmen
+    username: xmen
+    password: mutants1234@xmen
+
+  liquibase:
+    default-schema: brotherhood_of_mutants
+    change-log: classpath:db_version_control/changelog-master.xml

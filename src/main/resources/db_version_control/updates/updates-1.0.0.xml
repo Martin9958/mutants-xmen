@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="PAYU-1.0.0-DB-TAG" author="jenkins">
+        <tagDatabase tag="TAG_BEFORE_1.0.0"/>
+    </changeSet>
+
+    <changeSet id="PAYU-1.0.0-TAX-TABLE-07" author="andres.cantor" runOnChange="true">
+        <comment>Create the table Tax</comment>
+        <createTable schemaName="push_payment" tableName="tax">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tax_pkey"/>
+            </column>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="varchar(600)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable schemaName="push_payment" tableName="tax" cascadeConstraints="true"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="PAYU-1.0.0-PUSH-PAYMENT-SEQUENCE-AUDIT-TABLES-08" author="andres.cantor" runOnChange="true">
+        <comment>Create sequence for the audit tables table</comment>
+        <createSequence schemaName="push_payment" sequenceName="hibernate_sequence" startValue="1" incrementBy="1" minValue="1"/>
+        <rollback>
+            <dropSequence sequenceName="hibernate_sequence"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="PAYU-1.0.0-PUSH-PAYMENT-AUDIT-TABLE-09" author="andres.cantor" runOnChange="true">
+        <comment>Create Audit Table </comment>
+        <createTable schemaName="push_payment" tableName="revinfo">
+            <column name="rev" type="int4" defaultValueSequenceNext="hibernate_sequence">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtstmp" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable schemaName="push_payment" tableName="revinfo" cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="PAYU-1.0.0-TAX-AUDIT-TABLE-16" author="andres.cantor" runOnChange="true">
+        <comment>Create the table Tax</comment>
+        <createTable schemaName="push_payment" tableName="tax_aud">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rev" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revtype" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="value" type="varchar(600)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableSchemaName="push_payment"
+                                 baseTableName="tax_aud"
+                                 baseColumnNames="rev"
+                                 constraintName="tax_aud_fk"
+                                 referencedTableSchemaName="push_payment"
+                                 referencedTableName="revinfo"
+                                 referencedColumnNames="rev"/>
+
+        <rollback>
+            <dropForeignKeyConstraint baseTableSchemaName="push_payment"
+                                      baseTableName="tax_aud"
+                                      constraintName="tax_aud_fk"/>
+
+            <dropTable schemaName="push_payment" tableName="tax_aud" cascadeConstraints="true"/>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>
