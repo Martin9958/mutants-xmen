@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mercadolibre</groupId>
 	<artifactId>mutants-xmen</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>mutants-xmen</name>
 	<description>Demo project for MercadoLibre </description>
 	<properties>
@@ -27,6 +27,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
