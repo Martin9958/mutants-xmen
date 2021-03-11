@@ -5,20 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="PAYU-1.0.0-DB-TAG" author="jenkins">
+    <changeSet id="MUTANTS-1.0.0-DB-TAG" author="andres.cantor">
         <tagDatabase tag="TAG_BEFORE_1.0.0"/>
     </changeSet>
 
-    <changeSet id="PAYU-1.0.0-TAX-TABLE-07" author="andres.cantor" runOnChange="true">
-        <comment>Create the table Tax</comment>
-        <createTable schemaName="push_payment" tableName="tax">
+    <changeSet id="MUTANTS-1.0.0-DNA-TABLE-01" author="andres.cantor" runOnChange="true">
+        <comment>Create the Dna Table</comment>
+        <createTable schemaName="brotherhood_of_mutants" tableName="dna">
             <column name="id" type="varchar(36)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="tax_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="dna_pkey"/>
             </column>
-            <column name="key" type="varchar(255)">
+            <column name="dna" type="json">
                 <constraints nullable="false"/>
             </column>
-            <column name="value" type="varchar(600)">
+            <column name="type" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
@@ -35,23 +35,29 @@
             </column>
         </createTable>
 
+        <createIndex schemaName="brotherhood_of_mutants" tableName="dna" indexName="dna_type_idx">
+            <column name="type"/>
+        </createIndex>
+
         <rollback>
-            <dropTable schemaName="push_payment" tableName="tax" cascadeConstraints="true"/>
+            <dropIndex schemaName="brotherhood_of_mutants" tableName="dna" indexName="dna_type_idx"/>
+
+            <dropTable schemaName="brotherhood_of_mutants" tableName="dna" cascadeConstraints="true"/>
         </rollback>
 
     </changeSet>
 
-    <changeSet id="PAYU-1.0.0-PUSH-PAYMENT-SEQUENCE-AUDIT-TABLES-08" author="andres.cantor" runOnChange="true">
+    <changeSet id="MUTANTS-1.0.0-XMEN-SEQUENCE-AUDIT-TABLES-02" author="andres.cantor" runOnChange="true">
         <comment>Create sequence for the audit tables table</comment>
-        <createSequence schemaName="push_payment" sequenceName="hibernate_sequence" startValue="1" incrementBy="1" minValue="1"/>
+        <createSequence schemaName="brotherhood_of_mutants" sequenceName="hibernate_sequence" startValue="1" incrementBy="1" minValue="1"/>
         <rollback>
             <dropSequence sequenceName="hibernate_sequence"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="PAYU-1.0.0-PUSH-PAYMENT-AUDIT-TABLE-09" author="andres.cantor" runOnChange="true">
+    <changeSet id="MUTANTS-1.0.0-XMEN-AUDIT-TABLE-03" author="andres.cantor" runOnChange="true">
         <comment>Create Audit Table </comment>
-        <createTable schemaName="push_payment" tableName="revinfo">
+        <createTable schemaName="brotherhood_of_mutants" tableName="revinfo">
             <column name="rev" type="int4" defaultValueSequenceNext="hibernate_sequence">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -60,13 +66,13 @@
             </column>
         </createTable>
         <rollback>
-            <dropTable schemaName="push_payment" tableName="revinfo" cascadeConstraints="true"/>
+            <dropTable schemaName="brotherhood_of_mutants" tableName="revinfo" cascadeConstraints="true"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="PAYU-1.0.0-TAX-AUDIT-TABLE-16" author="andres.cantor" runOnChange="true">
+    <changeSet id="MUTANTS-1.0.0-DNA-AUDIT-TABLE-16" author="andres.cantor" runOnChange="true">
         <comment>Create the table Tax</comment>
-        <createTable schemaName="push_payment" tableName="tax_aud">
+        <createTable schemaName="brotherhood_of_mutants" tableName="dna_aud">
             <column name="id" type="varchar(36)">
                 <constraints nullable="false"/>
             </column>
@@ -76,11 +82,11 @@
             <column name="revtype" type="SMALLINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="key" type="varchar(255)">
-                <constraints nullable="true"/>
+            <column name="dna" type="json">
+                <constraints nullable="false"/>
             </column>
-            <column name="value" type="varchar(600)">
-                <constraints nullable="true"/>
+            <column name="type" type="varchar(40)">
+                <constraints nullable="false"/>
             </column>
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
                 <constraints nullable="false"/>
@@ -96,20 +102,20 @@
             </column>
         </createTable>
 
-        <addForeignKeyConstraint baseTableSchemaName="push_payment"
-                                 baseTableName="tax_aud"
+        <addForeignKeyConstraint baseTableSchemaName="brotherhood_of_mutants"
+                                 baseTableName="dna_aud"
                                  baseColumnNames="rev"
-                                 constraintName="tax_aud_fk"
-                                 referencedTableSchemaName="push_payment"
+                                 constraintName="dna_aud_fk"
+                                 referencedTableSchemaName="brotherhood_of_mutants"
                                  referencedTableName="revinfo"
                                  referencedColumnNames="rev"/>
 
         <rollback>
-            <dropForeignKeyConstraint baseTableSchemaName="push_payment"
-                                      baseTableName="tax_aud"
-                                      constraintName="tax_aud_fk"/>
+            <dropForeignKeyConstraint baseTableSchemaName="brotherhood_of_mutants"
+                                      baseTableName="dna_aud"
+                                      constraintName="dna_aud_fk"/>
 
-            <dropTable schemaName="push_payment" tableName="tax_aud" cascadeConstraints="true"/>
+            <dropTable schemaName="brotherhood_of_mutants" tableName="dna_aud" cascadeConstraints="true"/>
         </rollback>
 
     </changeSet>

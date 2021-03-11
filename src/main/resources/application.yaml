@@ -1,11 +1,23 @@
 server:
   port: 1963
 
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  show_sql: false
+  format_sql: true
+  envers:
+    store_data_at_delete: true
+  jdbc:
+    lob:
+      non_contextual_creation: true
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:64321/mutants_xmen
     username: xmen
     password: mutants1234@xmen
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
 
   liquibase:
     default-schema: brotherhood_of_mutants
