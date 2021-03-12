@@ -3,6 +3,7 @@ package com.mercadolibre.mutantsxmen.entryPoint.controller.swagger;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.mercadolibre.mutantsxmen.core.validator.exception.DNAValidationException;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.DetectMutantsRequestDto;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.RecruiterStatisticsResponse;
 import io.swagger.annotations.Api;
@@ -34,7 +35,7 @@ public interface BrotherhoodMutantsRecruiterDocumentary {
 //            @ApiResponse(code = 404, message = "NotFound", response = ),
 //            @ApiResponse(code = 500, message = "Internal Server Error", response = )})
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request);
+    ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request) throws DNAValidationException;
 
     @ApiOperation("Return the statistics of the recruitment of mutants")
 //    @ApiResponses(value = {
