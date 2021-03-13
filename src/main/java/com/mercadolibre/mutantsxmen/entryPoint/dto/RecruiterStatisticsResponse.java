@@ -28,10 +28,11 @@ public class RecruiterStatisticsResponse {
     private Integer countMutantDna;
 
     /** */
-    @JsonProperty("count_mutant_dna")
+    @JsonProperty("count_human_dna")
     private Integer countHumanDna;
 
     /** */
-    private Double ratio;
+    @JsonProperty("ratio")
+    private BigDecimal ratio;
 
 }

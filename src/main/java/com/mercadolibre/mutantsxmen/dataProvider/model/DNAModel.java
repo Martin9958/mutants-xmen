@@ -37,9 +37,9 @@ public class DNAModel extends Auditable<String> implements Serializable {
     private String dna;
 
     /** Payload Identifier */
-    @Column(name = "type")
+    @Column(name = "dna_type")
     @Enumerated(value= EnumType.STRING)
-    private DNAType type;
+    private DNAType dnaType;
 
     @PrePersist
     public void prePersist() {

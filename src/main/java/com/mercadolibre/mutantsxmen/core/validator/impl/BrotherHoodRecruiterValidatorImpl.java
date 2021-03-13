@@ -16,12 +16,6 @@ public class BrotherHoodRecruiterValidatorImpl implements BrotherhoodRecruiterVa
 
     /** {@inheritDoc} */
     @Override
-    public boolean existsASimilarSequenceRecorded(List<String> dna) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean detectGenX(ArrayList<ArrayList<String>> dnaMatrix) {
 
         int equalSequence = 0;

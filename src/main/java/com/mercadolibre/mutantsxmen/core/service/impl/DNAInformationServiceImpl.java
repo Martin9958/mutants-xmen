@@ -31,13 +31,13 @@ public class DNAInformationServiceImpl implements DNAInformationService {
     /** */
     @Override
     public Integer retrieveTotalOfMutants() {
-        return repository.findTotalDnaByType(DNAType.MUTANT);
+        return repository.findTotalDnaByType("MUTANT");
     }
 
     /** */
     @Override
     public Integer retrieveTotalOfHumans() {
-        return repository.findTotalDnaByType(DNAType.HUMAN);
+        return repository.findTotalDnaByType("HUMAN");
     }
 
 }

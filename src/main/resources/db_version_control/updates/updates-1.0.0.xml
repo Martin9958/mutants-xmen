@@ -18,7 +18,7 @@
             <column name="dna" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="type" type="varchar(40)">
+            <column name="dna_type" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">
@@ -36,7 +36,7 @@
         </createTable>
 
         <createIndex schemaName="brotherhood_of_mutants" tableName="dna" indexName="dna_type_idx">
-            <column name="type"/>
+            <column name="dna_type"/>
         </createIndex>
 
         <rollback>
@@ -85,7 +85,7 @@
             <column name="dna" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="type" type="varchar(40)">
+            <column name="dna_type" type="varchar(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValue="NOW()">

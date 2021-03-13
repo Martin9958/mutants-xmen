@@ -4,11 +4,7 @@ public enum ExceptionTypesEnum {
 
     /** General exception types */
     DNA_VALIDATION_ERROR("Validation error on the request body"),
-    MESSAGE_NOT_READABLE("The request body is not readable"),
-    CONFLICT_DATA_SOURCE("Conflict with data source"),
-
-    /** WebHook exception types */
-    DNA_CODE_ALREADY_EXIST("DNA Code Already exists");
+    CONFLICT_DATA_SOURCE("Conflict with data source");
 
     /** Exception type string representation  **/
     private String detail;

@@ -1,21 +1,26 @@
 package com.mercadolibre.mutantsxmen.core.service.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.aol.cyclops.trycatch.Try;
 import com.mercadolibre.mutantsxmen.core.builder.DNABuilder;
 import com.mercadolibre.mutantsxmen.core.service.BrotherhoodMutantsService;
 import com.mercadolibre.mutantsxmen.core.service.DNAInformationService;
 import com.mercadolibre.mutantsxmen.core.validator.BrotherhoodRecruiterValidator;
 import com.mercadolibre.mutantsxmen.core.validator.exception.DNAValidationException;
+import com.mercadolibre.mutantsxmen.core.validator.exception.base.ExceptionTypesEnum;
 import com.mercadolibre.mutantsxmen.dataProvider.model.DNAModel;
 import com.mercadolibre.mutantsxmen.dataProvider.model.DNAType;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.RecruiterStatisticsResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -52,12 +57,12 @@ public class BrotherhoodMutantsServiceImpl implements BrotherhoodMutantsService 
         LOGGER.info("DNA CODE {} ", dnaCode);
         Optional<DNAModel> foundDNAModel =  dnaInformationService.retrieveRegistryByDNACode(dnaCode);
         if(foundDNAModel.isPresent()){
-            response = foundDNAModel.get().getType().equals(DNAType.MUTANT);
+            response = foundDNAModel.get().getDnaType().equals(DNAType.MUTANT);
         }else{
             response = brotherhoodRecruiterValidator.detectGenX(dnaBuilder.buildDNAMatrix(dna));
             DNAModel toSave = new DNAModel();
             toSave.setDna(dnaCode);
-            toSave.setType(response ? DNAType.MUTANT : DNAType.HUMAN);
+            toSave.setDnaType(response ? DNAType.MUTANT : DNAType.HUMAN);
             toSave.setCreatedAt(new Date());
             toSave.setCreatedBy("MAGNETO");
             toSave.setUpdatedAt(new Date());
@@ -73,7 +78,19 @@ public class BrotherhoodMutantsServiceImpl implements BrotherhoodMutantsService 
     /** {@inheritDoc} */
     @Override
     public RecruiterStatisticsResponse getRecruiterMutantStatics() {
-        return null;
+
+        Integer totalOfMutants = dnaInformationService.retrieveTotalOfMutants();
+        Integer totalOfHumans = dnaInformationService.retrieveTotalOfHumans();
+        BigDecimal ratio = totalOfHumans.equals(0)
+                ? BigDecimal.ZERO
+                : BigDecimal.valueOf(totalOfMutants).divide(BigDecimal.valueOf(totalOfHumans), 5, RoundingMode.HALF_UP);
+
+        RecruiterStatisticsResponse recruiterStatisticsResponse = new RecruiterStatisticsResponse();
+        recruiterStatisticsResponse.setCountMutantDna(totalOfMutants);
+        recruiterStatisticsResponse.setCountHumanDna(totalOfHumans);
+        recruiterStatisticsResponse.setRatio(ratio);
+
+        return recruiterStatisticsResponse;
     }
 
 }

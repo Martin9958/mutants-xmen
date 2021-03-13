@@ -61,8 +61,10 @@ public class BrotherhoodMutantsRecruiterController implements BrotherhoodMutants
      * @return the statistics of the recruitment of mutants
      */
     @GetMapping("/stats")
-    public ResponseEntity<RecruiterStatisticsResponse> getRecruiterStatistics(){
-        return null;
+    public ResponseEntity<RecruiterStatisticsResponse> getRecruiterStatistics() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(brotherhoodMutantsService.getRecruiterMutantStatics());
+
     }
 
 }
