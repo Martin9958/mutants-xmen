@@ -10,8 +10,10 @@ import com.mercadolibre.mutantsxmen.entryPoint.controller.swagger.BrotherhoodMut
 import com.mercadolibre.mutantsxmen.entryPoint.dto.DetectMutantsRequestDto;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.RecruiterStatisticsResponse;
 import lombok.RequiredArgsConstructor;
+import com.aol.cyclops.trycatch.Try;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,11 +47,12 @@ public class BrotherhoodMutantsRecruiterController implements BrotherhoodMutants
      *          Forbidden if the DNA sequence is from a Human
      */
     @PostMapping
-    public ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request) throws DNAValidationException {
+    public ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request){
 
-        boolean response = brotherhoodMutantsService.isMutant(request.getDna());
-        LOGGER.info("Response {}", response);
-        return null;
+        boolean response = Try.withCatch(() -> brotherhoodMutantsService.isMutant(request.getDna()), DNAValidationException.class).get();
+
+        return ResponseEntity.status(response ? HttpStatus.OK : HttpStatus.FORBIDDEN).build();
+
     }
 
     /**

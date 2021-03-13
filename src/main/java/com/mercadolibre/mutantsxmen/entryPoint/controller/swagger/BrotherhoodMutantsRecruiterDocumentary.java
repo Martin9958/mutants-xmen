@@ -35,7 +35,7 @@ public interface BrotherhoodMutantsRecruiterDocumentary {
 //            @ApiResponse(code = 404, message = "NotFound", response = ),
 //            @ApiResponse(code = 500, message = "Internal Server Error", response = )})
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request) throws DNAValidationException;
+    ResponseEntity<?> detectMutants(@NotNull @Valid @RequestBody final DetectMutantsRequestDto request);
 
     @ApiOperation("Return the statistics of the recruitment of mutants")
 //    @ApiResponses(value = {

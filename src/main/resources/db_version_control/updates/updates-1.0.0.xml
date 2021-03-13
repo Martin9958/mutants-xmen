@@ -15,7 +15,7 @@
             <column name="id" type="varchar(36)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="dna_pkey"/>
             </column>
-            <column name="dna" type="json">
+            <column name="dna" type="TEXT">
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="varchar(40)">
@@ -82,7 +82,7 @@
             <column name="revtype" type="SMALLINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="dna" type="json">
+            <column name="dna" type="TEXT">
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="varchar(40)">
