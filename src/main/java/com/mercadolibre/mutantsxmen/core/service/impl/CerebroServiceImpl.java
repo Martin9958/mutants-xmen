@@ -2,42 +2,49 @@ package com.mercadolibre.mutantsxmen.core.service.impl;
 
 import java.util.Optional;
 
-import com.mercadolibre.mutantsxmen.core.service.DNAInformationService;
+import com.mercadolibre.mutantsxmen.core.service.CerebroService;
 import com.mercadolibre.mutantsxmen.dataProvider.model.DNAModel;
 import com.mercadolibre.mutantsxmen.dataProvider.model.DNAType;
 import com.mercadolibre.mutantsxmen.dataProvider.repository.DNARepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+/**
+ *
+ *
+ * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
+ * @version 1.0.0
+ * @since 08/03/21
+ */
+@Service
 @RequiredArgsConstructor
-public class DNAInformationServiceImpl implements DNAInformationService {
+public class CerebroServiceImpl implements CerebroService {
 
     /** */
    private final DNARepository repository;
 
-    /** */
+    /** {@inheritDoc} */
     @Override
     public void saveDNARegistry(DNAModel dnaModel) {
         repository.save(dnaModel);
     }
 
-    /** */
+    /** {@inheritDoc} */
     @Override
     public Optional<DNAModel> retrieveRegistryByDNACode(String dnaCode) {
         return repository.findByDna(dnaCode);
     }
 
-    /** */
+    /** {@inheritDoc} */
     @Override
     public Integer retrieveTotalOfMutants() {
-        return repository.findTotalDnaByType("MUTANT");
+        return repository.findTotalDnaByType(DNAType.MUTANT.getType());
     }
 
-    /** */
+    /** {@inheritDoc} */
     @Override
     public Integer retrieveTotalOfHumans() {
-        return repository.findTotalDnaByType("HUMAN");
+        return repository.findTotalDnaByType(DNAType.HUMAN.getType());
     }
 
 }

@@ -4,15 +4,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.mercadolibre.mutantsxmen.core.service.BrotherhoodMutantsService;
-import com.mercadolibre.mutantsxmen.core.service.impl.BrotherhoodMutantsServiceImpl;
 import com.mercadolibre.mutantsxmen.core.validator.exception.DNAValidationException;
 import com.mercadolibre.mutantsxmen.entryPoint.controller.swagger.BrotherhoodMutantsRecruiterDocumentary;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.DetectMutantsRequestDto;
 import com.mercadolibre.mutantsxmen.entryPoint.dto.RecruiterStatisticsResponse;
 import lombok.RequiredArgsConstructor;
 import com.aol.cyclops.trycatch.Try;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/v1.0/brotherhood-recruiter/mutant")
 public class BrotherhoodMutantsRecruiterController implements BrotherhoodMutantsRecruiterDocumentary {
-
-    /** Logger */
-    private static final Logger LOGGER = LoggerFactory.getLogger(BrotherhoodMutantsServiceImpl.class);
 
     /** */
     private final BrotherhoodMutantsService brotherhoodMutantsService;
