@@ -1,5 +1,5 @@
 # BROTHERHOOD OF MUTANTS
-###Contexto
+### Contexto
 Magneto quiere reclutar la mayor cantidad de mutantes para poder luchar contra los X-Men.
 Te ha contratado a ti para que desarrolles un proyecto que detecte si un humano es mutante basándose en su secuencia de ADN.
 Para eso te ha pedido crear un programa con un método o función con la siguiente firma (En alguno de los siguiente lenguajes: 
@@ -11,13 +11,13 @@ Las letras de los Strings solo pueden ser: (A,T,C,G), las cuales representa cada
 Sabrás si un humano es mutante, si encuentras ​más de una secuencia de cuatro letras
 iguales​, de forma oblicua, horizontal o vertical.
 
-####Ejemplo (Caso mutante):
+#### Ejemplo (Caso mutante):
 String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"}; En este caso el llamado a la función isMutant(dna) devuelve “true”.
 
 #### Desafios:
-#####Nivel 1:
+##### Nivel 1:
 Programa (en cualquier lenguaje de programación) que cumpla con el método pedido por Magneto.
-#####Nivel 2:
+##### Nivel 2:
 Crear una API REST, hostear esa API en un cloud computing libre (Google App Engine, Amazon AWS, etc), crear el servicio “/mutant/” en donde se pueda detectar si un humano es mutante enviando la secuencia de ADN mediante un HTTP POST con un Json el cual tenga el siguiente formato:
 
 POST → /mutant/
@@ -25,7 +25,7 @@ POST → /mutant/
 
 En caso de verificar un mutante, debería devolver un HTTP 200-OK, en caso contrario un 403-Forbidden
 
-#####Nivel 3:
+##### Nivel 3:
 Anexar una base de datos, la cual guarde los ADN’s verificados con la API.
 Solo 1 registro por ADN.
 Exponer un servicio extra “/stats” que devuelva un Json con las estadísticas de las verificaciones de ADN: {“count_mutant_dna”:40, “count_human_dna”:100: “ratio”:0.4}
