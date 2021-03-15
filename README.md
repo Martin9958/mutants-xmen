@@ -78,13 +78,9 @@ Cuenta con las dos funcionalidades necesarias:
 
 * Path: /v1.0/brotherhood-recruiter/mutant/stats
 
-* Request:
-
-![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(12).png)
-
 * Response:
 
-![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(13).png)
+![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(15).png)
 
 
 #### Funcionalidades Adicionales
