@@ -1,5 +1,7 @@
 # BROTHERHOOD OF MUTANTS
 ### Contexto
+![brotherhood](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(14).png)
+
 Magneto quiere reclutar la mayor cantidad de mutantes para poder luchar contra los X-Men.
 Te ha contratado a ti para que desarrolles un proyecto que detecte si un humano es mutante basándose en su secuencia de ADN.
 Para eso te ha pedido crear un programa con un método o función con la siguiente firma (En alguno de los siguiente lenguajes: 
@@ -7,6 +9,8 @@ Java / Golang / C-C++ / Javascript (node) / Python / Ruby):
 
 En donde recibirás como parámetro un array de Strings que representan cada fila de una tabla de (NxN) con la secuencia del ADN.
 Las letras de los Strings solo pueden ser: (A,T,C,G), las cuales representa cada base nitrogenada del ADN.
+
+![matrix](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image.png)
 
 Sabrás si un humano es mutante, si encuentras ​más de una secuencia de cuatro letras
 iguales​, de forma oblicua, horizontal o vertical.
@@ -38,31 +42,50 @@ Test-Automáticos, Code coverage > 80%.
 ### Instrucciones del Manejo del API
 El servicio se encuentra desplegado en un ambiente de heroku e implementa un swagger para su comodidad a la hora del uso
 
+![swagger](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(4).png)
+
 Cuenta con las dos funcionalidades necesarias:
 
 1. Deteccion de Mutantes: 
 
-Path: /v1.0/brotherhood-recruiter/mutant
+* Path: /v1.0/brotherhood-recruiter/mutant
 
-Request:
+* Request Mutant:
 
-Response:
+![mutant_req](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(5).png)
 
-OK:
+* Response OK:
 
-Forbidden:
+![mutant_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(6).png)
 
-Bad Request:
+* Request Human:
+
+![human_req](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(10).png)
+
+* Response Forbidden:
+
+![human_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(9).png)
+
+* Request Bad:
+
+![bad_req](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(7).png)
+
+* Response Bad Request:
+
+![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(8).png)
 
 2. Retorno de las Estadisticas del reclutamiento:
 
-Path: /v1.0/brotherhood-recruiter/mutant/stats
+* Path: /v1.0/brotherhood-recruiter/mutant/stats
 
-Request:
+* Request:
 
-Response:
+![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(12).png)
 
-OK:
+* Response:
+
+![bad_rep](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(13).png)
+
 
 #### Funcionalidades Adicionales
 
@@ -91,8 +114,22 @@ para su uso es necesario realizar el siguiente procedimiento:
 1. Desde la terminal nos dirigimos al root del proyecto, una vez ahi nos dirigimos a la
 carpeta docker con el siguiente comando:
 
+![docket](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(11).png)
+
 2. Una vez dentro de la carpeta docker, ejecutamos los siguientes comandos:
 
+![docket](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(12).png)
+
+3. Si desea correr en local la aplicacion:
+
+![estructura](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(3).png)
+
+* En el src/main/resources/application.yaml documente las credenciales del ambiente de heroku de la siguiente manera
+
+![application.yaml](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(1).png)
+
+* En el src/main/resources/schema.sql documente de la siguiente manera
+![schema.sql](https://github.com/Martin9958/mutants-xmen/blob/master/imagenes/image%20(2).png)
 
 #### Cobertura de Pruebas: 95%
 
@@ -108,5 +145,8 @@ https://brotherhood-of-mutants.herokuapp.com/swagger-ui.html#/
 
 ### Construido con
 * Maven: Dependecy Management
+
+### Realizado por
+[Andres Martin Cantor](https://github.com/Martin9958)
 
 
