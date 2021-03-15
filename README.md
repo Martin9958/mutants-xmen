@@ -83,11 +83,9 @@ a los registros de los participantes del reclutamiento.
 Para un despliegue local y para las pruebas de integracion se utiliza una base de datos dockerizada la cual cuenta
 con las siguientes credenciales:
 
-url: jdbc:postgresql://localhost:64321/mutants_xmen
-
-username: xmen
-
-password: mutants1234@xmen
+* url: jdbc:postgresql://localhost:64321/mutants_xmen
+* username: xmen
+* password: mutants1234@xmen
 
 para su uso es necesario realizar el siguiente procedimiento:
 1. Desde la terminal nos dirigimos al root del proyecto, una vez ahi nos dirigimos a la
@@ -98,7 +96,17 @@ carpeta docker con el siguiente comando:
 
 #### Cobertura de Pruebas: 95%
 
-##### URL
+##### URL del API
 https://brotherhood-of-mutants.herokuapp.com/swagger-ui.html#/
+
+### PreRequisitos
+
+* Java 11
+* Maven 3.8.0
+* Heroku 7.29
+* Spring Boot 2.4.3
+
+### Construido con
+* Maven: Dependecy Management
 
 
