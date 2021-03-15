@@ -10,12 +10,11 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Swagger configuration to show the user the different EndPoints to use in Push Payments module
+ * Swagger configuration to show the user the different EndPoints to use in Brotherhood od Mutants Module
  *
- * @author Andres Martin Cantor Urrego (andres.cantor@payulatam.com)
- * @author Alejandro Cadena (alejandro.cadena@payulatam.com)
+ * @author Andres Martin Cantor Urrego (martin_995058@hotmail.com)
  * @version 1.0.0
- * @since 25/06/20
+ * @since 08/03/21
  */
 @EnableSwagger2
 @Configuration

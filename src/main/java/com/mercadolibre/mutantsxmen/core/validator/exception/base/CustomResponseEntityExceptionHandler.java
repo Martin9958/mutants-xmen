@@ -1,8 +1,15 @@
 package com.mercadolibre.mutantsxmen.core.validator.exception.base;
 
+import static com.mercadolibre.mutantsxmen.core.validator.exception.base.ExceptionTypesEnum.CONFLICT_DATA_SOURCE;
+
+import java.util.Objects;
+import javax.validation.ConstraintViolationException;
+
 import com.mercadolibre.mutantsxmen.core.validator.exception.DNAValidationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,6 +40,40 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
         return new ResponseEntity<>(errorResponseBody, status);
     }
+
+    /**
+     * Customize the response for Data Access Exceptions
+     * <p>This method delegates to {@link #handleExceptionInternal}.
+     * @param exception the exception
+     * @return a {@code ResponseEntity} instance
+     */
+    @ExceptionHandler({
+            DataAccessResourceFailureException.class, DataIntegrityViolationException.class,
+            ConstraintViolationException.class, IllegalArgumentException.class})
+    public ResponseEntity<Object> handleDataBaseException(
+            final Exception exception, final WebRequest request) {
+
+        HttpStatus status = getHttpStatusFromDatabaseException(exception);
+        ErrorResponseBody errorResponseBody = new ErrorResponseBody(CONFLICT_DATA_SOURCE, status, exception.getMessage());
+        errorResponseBody.initialize(exception, status, request);
+        logError(errorResponseBody, exception);
+
+        return new ResponseEntity<>(errorResponseBody, status);
+    }
+
+    /**
+     * Get {@link HttpStatus} from {@link Exception}
+     *
+     * @param exception {@link Exception}
+     * @return {@link HttpStatus}
+     */
+    private HttpStatus getHttpStatusFromDatabaseException(Exception exception) {
+
+        HttpStatus status = getResponseStatusFromAnnotation(exception.getClass());
+        return Objects.requireNonNullElse(status, HttpStatus.CONFLICT);
+
+    }
+
 
     /**
      * Get {@link HttpStatus} from {@link DNAValidationException}

@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Cerebro Service: Offered to expose the operations that Cerebro can do
  *
  * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CerebroServiceImpl implements CerebroService {
 
-    /** */
+    /** Repository: used to manipulate the date registered in the database*/
    private final DNARepository repository;
 
     /** {@inheritDoc} */

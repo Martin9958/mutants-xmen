@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ * Cerebro DNA Builder: Used to build the DNA objects necessary for Cerebro processing
  *
  * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0
@@ -25,14 +25,14 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CerebroDNABuilderImpl implements CerebroDNABuilder {
 
-    /** */
+    /** Validator component: Validate Input information received by the recruiter */
     private final CerebroValidator CerebroValidator;
 
     /** {@inheritDoc} */
     @Override
     public String buildDNACode(List<String> dna) {
 
-        return dna.stream().map(String::valueOf).collect(Collectors.joining());
+        return dna.stream().map(String::valueOf).collect(Collectors.joining()).toUpperCase();
 
     }
 
@@ -40,13 +40,8 @@ public class CerebroDNABuilderImpl implements CerebroDNABuilder {
     @Override
     public ArrayList<ArrayList<String>> buildDNAMatrix(List<String> dna) throws DNAValidationException {
 
-        ArrayList<ArrayList<String>> dnaMatrix = new ArrayList<>();
-
         CerebroValidator.validateDNACodeRequest(dna);
-        dna.forEach(sequence -> dnaMatrix.add(new ArrayList<>(ArrayUtil.asList(sequence.toUpperCase().split("")))));
-        CerebroValidator.validateDNACodeMatrix(dnaMatrix);
-
-        return dnaMatrix;
+        return this.buildMatrix(dna);
 
     }
 
@@ -64,6 +59,23 @@ public class CerebroDNABuilderImpl implements CerebroDNABuilder {
         toSave.setUpdatedBy("Recruiter Max Eisenhardt - Magneto");
 
         return toSave;
+
+    }
+
+    /**
+     * This method create the DNA Matrix by the DNA sequence
+     *
+     * @param dna The DNA received from the recruiter
+     * @return The created DNA Matrix
+     * @throws DNAValidationException if DNA and DNA matrix validations are wrong
+     */
+    public ArrayList<ArrayList<String>> buildMatrix(List<String> dna) throws DNAValidationException {
+
+        ArrayList<ArrayList<String>> dnaMatrix = new ArrayList<>();
+        dna.forEach(sequence -> dnaMatrix.add(new ArrayList<>(ArrayUtil.asList(sequence.toUpperCase().split("")))));
+        CerebroValidator.validateDNACodeMatrix(dnaMatrix);
+
+        return dnaMatrix;
 
     }
 

@@ -7,7 +7,7 @@ import com.mercadolibre.mutantsxmen.core.service.StatisticalService;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Statistical Service: exposed to calculate the different statistical variables for the population analysis
  *
  * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0

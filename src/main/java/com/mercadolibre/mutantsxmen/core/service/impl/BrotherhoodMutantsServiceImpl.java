@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Brotherhood Mutants Service offered to the recruiter process for new mutants
  *
  * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0
@@ -33,19 +33,19 @@ public class BrotherhoodMutantsServiceImpl implements BrotherhoodMutantsService 
     /** Logger */
     private static final Logger LOGGER = LoggerFactory.getLogger(BrotherhoodMutantsServiceImpl.class);
 
-    /** */
+    /** Cerebro DNA Builder: Used to build the DNA objects necessary for Cerebro processing */
     private final CerebroDNABuilder cerebroDnaBuilder;
 
-    /** */
+    /** Recruitment Statistics Builder: Used to build the stats Objects resulting from Cerebro processing */
     private final RecruitmentStatisticsBuilder statisticsBuilder;
 
-    /** */
+    /** Cerebro Service: Offered to expose the operations that Cerebro can do */
     private final CerebroService cerebroService;
 
-    /** */
+    /** Statistical Service: exposed to calculate the different statistical variables for the population analysis */
     private final StatisticalService statisticalService;
 
-    /** */
+    /** Validator: Brother hood Recruiter used to detect the GenX */
     private final BrotherhoodRecruiterValidator brotherhoodRecruiterValidator;
 
 

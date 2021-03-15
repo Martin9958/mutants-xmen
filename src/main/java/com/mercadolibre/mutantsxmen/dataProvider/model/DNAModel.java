@@ -16,6 +16,13 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.envers.Audited;
 
+/**
+ * The DNA Model Abstraction used to Registry after validation
+ *
+ * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
+ * @version 1.0.0
+ * @since 08/03/21
+ */
 @Data
 @Entity
 @Audited
@@ -32,11 +39,11 @@ public class DNAModel extends Auditable<String> implements Serializable {
     @Column(name = "id")
     private String id;
 
-    /** Associated account to notify*/
+    /** The DNA Sequence analyzed */
     @Column(name = "dna")
     private String dna;
 
-    /** Payload Identifier */
+    /** The Type of the DNA (Mutant or Human) */
     @Column(name = "dna_type")
     @Enumerated(value= EnumType.STRING)
     private DNAType dnaType;

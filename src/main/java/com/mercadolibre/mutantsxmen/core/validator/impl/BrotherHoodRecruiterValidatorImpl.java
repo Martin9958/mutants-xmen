@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ * Validator: Brother hood Recruiter used to detect the GenX
  *
  * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0
@@ -57,12 +57,13 @@ public class BrotherHoodRecruiterValidatorImpl implements BrotherhoodRecruiterVa
     }
 
     /**
+     * This method validate the Presence of the Gen X according to the movement realized in a specific direction
      *
-     * @param move
-     * @param dnaMatrix
-     * @param i
-     * @param j
-     * @return
+     * @param move the movement to perform for the analysis (HORIZONTAL, VERTICAL, DIAGONAL, INVERSE_DIAGONAL)
+     * @param dnaMatrix the received DNA Matrix To process the nitrogen base information
+     * @param i Numeric variable used to indicate the row number
+     * @param j Numeric variable used to indicate the column number
+     * @return the validation corresponding to the entered movement
      */
     private boolean validateInDirection(MoveValidationEnum move, ArrayList<ArrayList<String>> dnaMatrix, Integer i , Integer j){
 
@@ -94,12 +95,13 @@ public class BrotherHoodRecruiterValidatorImpl implements BrotherhoodRecruiterVa
     }
 
     /**
+     * This method validate the Presence of Equals in the received nitrogen Bases
      *
-     * @param nitrogenBaseA
-     * @param nitrogenBaseB
-     * @param nitrogenBaseC
-     * @param nitrogenBaseD
-     * @return
+     * @param nitrogenBaseA the First nitrogen Base to analyse
+     * @param nitrogenBaseB the Second nitrogen Base to analyse
+     * @param nitrogenBaseC the Third nitrogen Base to analyse
+     * @param nitrogenBaseD the Quarter nitrogen Base to analyse
+     * @return True if the Presence of Equals in the received nitrogen Bases otherwise false
      */
     private boolean validation(String nitrogenBaseA,String nitrogenBaseB,String nitrogenBaseC,String nitrogenBaseD){
 

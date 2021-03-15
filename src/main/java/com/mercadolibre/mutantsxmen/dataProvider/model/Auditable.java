@@ -16,8 +16,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 /**
  * Capture auditing information on persisting and updating models
  *
- * @author
+ * @author Andres Martin Cantor Urrego (martin_990558@hotmail.com)
  * @version 1.0.0
+ * @since 08/03/21
  */
 @Data
 @NoArgsConstructor

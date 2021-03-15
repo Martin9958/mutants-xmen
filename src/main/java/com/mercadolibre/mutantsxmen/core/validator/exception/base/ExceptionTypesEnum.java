@@ -19,14 +19,4 @@ public enum ExceptionTypesEnum {
         this.detail = detail;
     }
 
-    /**
-     *  Get exception string detail
-     *
-     * @return string description
-     */
-    public String detail() {
-
-        return this.detail;
-    }
-
 }
