@@ -12,7 +12,9 @@ Sabrás si un humano es mutante, si encuentras ​más de una secuencia de cua
 iguales​, de forma oblicua, horizontal o vertical.
 
 #### Ejemplo (Caso mutante):
-String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"}; En este caso el llamado a la función isMutant(dna) devuelve “true”.
+String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"}
+
+En este caso el llamado a la función isMutant(dna) devuelve “true”.
 
 #### Desafios:
 ##### Nivel 1:
