@@ -13,12 +13,12 @@ hibernate:
 
 spring:
   datasource:
-#    url: jdbc:postgresql://ec2-52-44-31-100.compute-1.amazonaws.com:5432/d66lkjl7t7vbep
-#    username: vciigxqwisykqs
-#    password: e90a1b1e0ef4fa926ffe3bef937a4f9e451d203e00fc309d94ad3284e9f95941
-    url: jdbc:postgresql://localhost:64321/mutants_xmen
-    username: xmen
-    password: mutants1234@xmen
+    url: jdbc:postgresql://ec2-52-44-31-100.compute-1.amazonaws.com:5432/d66lkjl7t7vbep
+    username: vciigxqwisykqs
+    password: e90a1b1e0ef4fa926ffe3bef937a4f9e451d203e00fc309d94ad3284e9f95941
+#    url: jdbc:postgresql://localhost:64321/mutants_xmen
+#    username: xmen
+#    password: mutants1234@xmen
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
 
